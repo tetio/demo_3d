@@ -27,5 +27,11 @@ public class Enemy : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log("Hit: " + other.transform.name);
+        if (other.transform.name.StartsWith("Laser"))
+        {
+            Destroy(other.gameObject);
+            Debug.Log("Enemy distroyed!");
+            transform.position = new Vector3(Random.Range(-14f, 14f), 11, 0);
+        }
     }
 }
