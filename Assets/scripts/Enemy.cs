@@ -7,11 +7,10 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     private float speed = 4f;
 
-
     // Start is called before the first frame update
     void Start()
     {
-
+        transform.position = new Vector3(0, 11, 0);
     }
 
     // Update is called once per frame
@@ -19,7 +18,7 @@ public class Enemy : MonoBehaviour
     {
         transform.Translate(Vector3.down * speed * Time.deltaTime);
         if (transform.position.y < 0)
-        {
+        { 
             transform.position = new Vector3(Random.Range(-14f, 14f), 11, 0);
         }
     }
@@ -27,11 +26,17 @@ public class Enemy : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log("Hit: " + other.transform.name);
-        if (other.transform.name.StartsWith("Laser"))
+        if (other.tag == "Player")
+        {
+            other.transform.GetComponent<Player>().Damage();
+            Destroy(this.gameObject);
+
+        }
+        if (other.tag == "Laser")
         {
             Destroy(other.gameObject);
             Debug.Log("Enemy distroyed!");
-            transform.position = new Vector3(Random.Range(-14f, 14f), 11, 0);
+            Destroy(this.gameObject);
         }
     }
 }

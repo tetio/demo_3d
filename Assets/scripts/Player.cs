@@ -10,6 +10,8 @@ public class Player : MonoBehaviour
     private GameObject laserPrefab;
     [SerializeField]
     private float fireRate = 0.5f;
+    [SerializeField]
+    private int lives = 3;
 
     private float nextFire = -1;
 
@@ -61,6 +63,16 @@ public class Player : MonoBehaviour
         {
             Instantiate(laserPrefab, transform.position+new Vector3(0, 1.0f, 0), Quaternion.identity);
             nextFire = Time.time + fireRate;
+        }
+    }
+
+    public void Damage() 
+    {
+        lives -= 1;
+        Debug.Log("I've been hit, remaining lives= "+ lives);
+
+        if (lives < 1) {
+            Destroy(this.gameObject);
         }
     }
 }
