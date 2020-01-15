@@ -10,17 +10,17 @@ public class Enemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        transform.position = new Vector3(0, 11, 0);
+        //transform.position = new Vector3(0, 11, 0);
     }
 
     // Update is called once per frame
     void Update()
     {
         transform.Translate(Vector3.down * speed * Time.deltaTime);
-        if (transform.position.y < 0)
-        { 
-            transform.position = new Vector3(Random.Range(-14f, 14f), 11, 0);
-        }
+        // if (transform.position.y < 0)
+        // { 
+        //     transform.position = new Vector3(Random.Range(-14f, 14f), 11, 0);
+        // }
     }
 
     private void OnTriggerEnter(Collider other)

@@ -26,8 +26,6 @@ public class Player : MonoBehaviour
     {
         CalculateMovement();
         fireLaser();
-
-
     }
 
     private void CalculateMovement()
@@ -72,6 +70,7 @@ public class Player : MonoBehaviour
         Debug.Log("I've been hit, remaining lives= "+ lives);
 
         if (lives < 1) {
+            GameObject.FindGameObjectWithTag("SpawnManager").GetComponent<SpawnManager>().OnPlayerDeath();
             Destroy(this.gameObject);
         }
     }
